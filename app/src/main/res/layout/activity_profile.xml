@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="uta.utap.Profile">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/utaprof">
+
+        <ImageView
+            android:id="@+id/prof_header"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/ic_account_circle_white_24dp" />
+
+        <TextView
+            android:id="@+id/prof_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/prof_header"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_toEndOf="@+id/prof_header"
+            android:layout_toRightOf="@+id/prof_header"
+            android:text="UID"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/prof_id"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/prof_id"
+            android:text="Profile Type"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/acc_info"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_gravity="start"
+
+        android:background="@android:color/white"
+        android:paddingLeft="20dp"
+        android:text="@string/account_info"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#BDBDBD" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_gravity="start"
+        android:background="@android:color/white"
+        android:paddingLeft="20dp"
+        android:text="@string/input_schedule"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textSize="18sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#BDBDBD" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_reg"
+
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:background="@color/utaOrange"
+            android:text="@string/register_account"
+            android:textAllCaps="false"
+            android:layout_marginLeft="65dp"
+            android:layout_marginStart="65dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <Button
+            android:id="@+id/button_log"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:background="@color/utaOrange"
+            android:text="@string/login"
+            android:textAllCaps="false"
+            android:layout_alignTop="@+id/button_reg"
+            android:layout_toRightOf="@+id/button_reg"
+            android:layout_toEndOf="@+id/button_reg"
+            android:layout_marginLeft="22dp"
+            android:layout_marginStart="22dp"
+            android:onClick="Login"/>
+
+
+
+
+    </RelativeLayout>
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:src="@drawable/utap"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="20dp"/>
+
+
+</LinearLayout>
