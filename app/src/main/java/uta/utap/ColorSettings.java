@@ -8,13 +8,20 @@ import android.graphics.Color;
 
 public class ColorSettings
 {
-    private Color m_UnavailableColor;
-    private Color m_BusyColor;
-    private Color m_AvailableColor;
+    private int m_UnavailableColor;
+    private int m_BusyColor;
+    private int m_AvailableColor;
 
     // Constructor
     public ColorSettings()
     {
+    }
+
+    public void setDefaultColors()
+    {
+        m_UnavailableColor = Color.RED;
+        m_BusyColor = Color.YELLOW;
+        m_AvailableColor = Color.GREEN;
     }
 
 
