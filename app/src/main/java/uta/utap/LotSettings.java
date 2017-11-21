@@ -1,6 +1,6 @@
 package uta.utap;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by emiko on 11/20/2017.
@@ -10,7 +10,7 @@ public class LotSettings
 {
     private float m_MaxLotDistance; // lot distance in meters TODO miles instead?
     private int m_MaxWaitTime; // wait time in minutes
-    private List<Lot> m_PreferredLots;
+    private ArrayList<Lot> m_PreferredLots = new ArrayList<Lot>();
 
     private static final float DEFAULT_MAX_LOT_DIST = 500.0f;
     private static final int DEFAULT_MAX_WAIT_TIME = 10;
