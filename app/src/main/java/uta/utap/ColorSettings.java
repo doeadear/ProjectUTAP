@@ -15,8 +15,10 @@ public class ColorSettings
     // Constructor
     public ColorSettings()
     {
+        setDefaultColors();
     }
 
+    // Method to set and reset color settings to default values
     public void setDefaultColors()
     {
         m_UnavailableColor = Color.RED;
@@ -24,5 +26,35 @@ public class ColorSettings
         m_AvailableColor = Color.GREEN;
     }
 
+    // Accessor methods
+    public void setUnavailableColor(int unavailableColor)
+    {
+        m_UnavailableColor = unavailableColor;
+    }
+
+    public void setBusyColor(int busyColor)
+    {
+        m_BusyColor = busyColor;
+    }
+
+    public void setAvailableColor(int availableColor)
+    {
+        m_AvailableColor = availableColor;
+    }
+
+    public int getUnavailableColor()
+    {
+        return m_UnavailableColor;
+    }
+
+    public int getBusyColor()
+    {
+        return m_BusyColor;
+    }
+
+    public int getAvailableColor()
+    {
+        return m_AvailableColor;
+    }
 
 }
