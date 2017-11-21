@@ -15,11 +15,11 @@ public class ColorSettings
     // Constructor
     public ColorSettings()
     {
-        setDefaultColors();
+        setDefaultColorSettings();
     }
 
     // Method to set and reset color settings to default values
-    public void setDefaultColors()
+    public void setDefaultColorSettings()
     {
         m_UnavailableColor = Color.RED;
         m_BusyColor = Color.YELLOW;
