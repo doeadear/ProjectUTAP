@@ -11,6 +11,20 @@ public class User {
     private Location m_Destination;
     private UtappSettings m_Settings;
 
+    // Constructor
+    public User(String name)
+    {
+        m_Name = name;
+        m_Settings = new UtappSettings();
+    }
+
+    public void setActiveUser(User user)
+    {
+        this.m_Name = user.m_Name;
+        this.m_Settings = user.m_Settings;
+        m_Destination.reset();
+    }
+
     // Accessor methods
     public String getName()
     {
