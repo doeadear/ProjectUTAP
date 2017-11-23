@@ -2,6 +2,9 @@ package uta.utap;
 
 import org.junit.Test;
 
+import java.io.InputStream;
+import java.util.Scanner;
+
 import static org.junit.Assert.*;
 
 /**
@@ -13,5 +16,27 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
+    }
+
+    @Test
+    public void test_PasswordUtils() throws Exception
+    {
+        String password = "testPassword";
+        byte[] salt = PasswordUtils.generateSalt();
+        String hash = PasswordUtils.generatePasswordHash(password, salt);
+
+        System.out.println("Password: " + password);
+        System.out.println("Salt: " + salt.toString());
+        System.out.println("Hash: " + hash);
+
+        System.out.println("Verifying hash..");
+        String testPassword = "testPassword";
+        String testHash = PasswordUtils.generatePasswordHash(testPassword, salt);
+        assertEquals(hash, testHash);
+
+        System.out.println("Verifying failure..");
+        String failPassword = "wrongPassword";
+        String failHash = PasswordUtils.generatePasswordHash(failPassword, salt);
+        assertNotEquals(hash, failHash);
     }
 }
