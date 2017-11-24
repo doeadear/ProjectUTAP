@@ -45,7 +45,8 @@ public class PasswordUtils
     }
 
     // Generate salt used to generate hash
-    public static byte[] generateSalt() throws NoSuchAlgorithmException {
+    public static byte[] generateSalt()
+    {
         byte[] salt = new byte[32];
         randomGenerator.nextBytes(salt);
 
