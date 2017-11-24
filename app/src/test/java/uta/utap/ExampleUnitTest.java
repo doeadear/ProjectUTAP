@@ -26,7 +26,12 @@ public class ExampleUnitTest {
         String hash = PasswordUtils.generatePasswordHash(password, salt);
 
         System.out.println("Password: " + password);
-        System.out.println("Salt: " + salt.toString());
+        System.out.print("Salt: ");
+        for(int i = 0; i < salt.length; i++)
+        {
+            System.out.print(salt[i]);
+        }
+        System.out.println();
         System.out.println("Hash: " + hash);
 
         System.out.println("Verifying hash..");
