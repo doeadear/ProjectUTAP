@@ -1,0 +1,42 @@
+
+create table user
+(
+uid varchar(30) not null,
+email varchar(30),
+password varchar2(15),
+m_AvailableColor int,
+m_BusyColor int,
+m_UnavailableColor int,
+/*TODO: notification seetings needs to be added */
+primary key(uid)
+);
+
+create table schedules
+(
+uid varchar(30) not null,
+lot_id varchar(30),
+m_MaxLotDistance double,
+m_MaxWaitTime decimal(3,1),
+primary key(uid,lot_id),
+foreign key (uid) references user(uid),
+foreign key (lot_id) references lots(lot_id)
+);
+
+
+
+create table lots
+(
+lot_id int not null,
+location varchar(30),
+status varchar (20),
+facultyOnly varchar(5),
+primary key (lot_id)
+
+);
+
+/* TODO: user feed back table needs to be created*/
+
+
+ALTER TABLE lots 
+ADD CONSTRAINT status_check
+CHECK (status IN ('UNAVAILABLE', 'BUSY','AVAILABLE'));
