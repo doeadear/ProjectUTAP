@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:layout_gravity="start"
-
+            android:onClick="GoColor"
             android:background="@android:color/white"
             android:paddingLeft="20dp"
             android:text="@string/setting_color"
@@ -37,6 +37,7 @@
             android:paddingLeft="20dp"
             android:text="@string/setting_lot"
             android:textAllCaps="false"
+            android:onClick="GoLot"
             android:textSize="18sp"
             android:textAlignment="viewStart" />
 
@@ -48,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:layout_gravity="start"
-
+            android:onClick="GoNotification"
             android:background="@android:color/white"
             android:paddingLeft="20dp"
             android:textAllCaps="false"

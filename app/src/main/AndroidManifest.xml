@@ -24,7 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Settings"
             android:label="@string/title_activity_settings" />
@@ -36,9 +35,18 @@
             android:label="Profile Page" />
         <activity
             android:name=".SIgnup"
-            android:label="Sign Up">
+            android:label="Sign Up"></activity>
+        <activity
+            android:name=".ColorSettings"
+            android:label="Color Selection Page" />
+        <activity
+            android:name=".LotSettings"
+            android:label="Lot Preferences" />
+        <activity
+            android:name=".NotificationSettings"
+            android:label="Notifications Page" />
 
-        </activity>
+        <activity android:name=".Input_Schedule"></activity>
     </application>
 
 </manifest>

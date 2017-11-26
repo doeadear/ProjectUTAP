@@ -5,13 +5,26 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="choose_color_for_busy_parking">Choose color for Busy parking</string>
+    <string name="choose_color_for_full_parking">Choose color for Full parking</string>
+    <string name="choose_color_for_available_parking">Choose color for Available parking</string>
+    <string name="choose_color_for_free_parking">Choose color for Free Parking</string>
 
+    <string name="select_lot_preference_1">Select Lot Preference #1</string>
+    <string name="select_lot_preference_2">Select Lot Preference #2</string>
+    <string name="select_lot_preference_3">Select Lot Preference #3</string>
+    <string name="save">Save</string>
+    <string name="select_day_and_start_time_for_3_classes">Select Day and Start Time for 3 classes</string>
+    <string name="select_max_distance_from_destination">Select Max Distance from Destination (meters)</string>
+    <string name="select_maximum_wait_time">Select Maximum Wait time(minutes)</string>
 
     <string name="title_activity_settings">Settings</string>
     <string name="setting_color">Color Settings</string>
     <string name="setting_notification">Notification Settings</string>
     <string name="setting_lot">Lot Settings</string>
     <string name="title_activity_nav">Nav</string>
+    <string name="allow_notification">Allow Notifications</string>
+
 
     <string name="title_activity_login">Sign in</string>
 
@@ -44,4 +57,65 @@
     <string name="title_activity_sign_in">Sign in</string>
     <string name="title_activity_signup">Sign in</string>
     <string name="sign_in">Sign In</string>
+
+    <string-array name="Color_List">
+        <item>Red</item>
+        <item>Yellow</item>
+        <item>Green</item>
+    </string-array>
+
+    <string-array name="Lot_List">
+        <item>Lot 1</item>
+        <item>Lot 2</item>
+        <item>Lot 3</item>
+        <item>Lot 4</item>
+        <item>Lot 5</item>
+        <item>Lot 6</item>
+    </string-array>
+
+    <string-array name="Days">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+
+
+    <string-array name="Schedule_Time">
+        <item>7:00</item>
+        <item>8:00</item>
+        <item>9:00</item>
+        <item>10:00</item>
+        <item>11:00</item>
+        <item>12:00</item>
+        <item>13:00</item>
+        <item>14:00</item>
+        <item>15:00</item>
+        <item>16:00</item>
+        <item>17:00</item>
+        <item>18:00</item>
+        <item>19:00</item>
+        <item>20:00</item>
+        <item>21:00</item>
+        <item>22:00</item>
+    </string-array>
+
+    <string-array name="max_wait">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>30</item>
+    </string-array>
+
+    <string-array name="max_dist">
+        <item>50</item>
+        <item>100</item>
+        <item>200</item>
+        <item>500</item>
+    </string-array>
+
+
 </resources>

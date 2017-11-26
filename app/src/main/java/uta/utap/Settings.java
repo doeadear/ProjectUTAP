@@ -1,9 +1,11 @@
 package uta.utap;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 
 public class Settings extends AppCompatActivity {
 
@@ -23,6 +25,21 @@ public class Settings extends AppCompatActivity {
         startActivityForResult(myIntent, 0);
         return true;
 
+    }
+
+    public void GoColor(View view) {
+        Intent intent=new Intent(this, ColorSettings.class);
+        startActivity(intent);
+    }
+
+    public void GoNotification(View view) {
+        Intent intent=new Intent(this, NotificationSettings.class);
+        startActivity(intent);
+    }
+
+    public void GoLot(View view) {
+        Intent intent=new Intent(this, LotSettings.class);
+        startActivity(intent);
     }
 
 }

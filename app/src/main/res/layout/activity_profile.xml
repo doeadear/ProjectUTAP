@@ -75,6 +75,7 @@
         android:layout_height="75dp"
         android:layout_gravity="start"
         android:background="@android:color/white"
+        android:onClick="GoSchedule"
         android:paddingLeft="20dp"
         android:text="@string/input_schedule"
         android:textAlignment="viewStart"
