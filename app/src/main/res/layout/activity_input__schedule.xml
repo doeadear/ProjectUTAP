@@ -1,0 +1,126 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <TextView
+            android:id="@+id/schedule_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_day_and_start_time_for_3_classes"
+            android:textSize="18dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:textColor="#000000"/>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout01"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/schedule_text"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/TextView01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dip"
+                android:text="Select Day and Start Time for class 1"
+                android:textSize="18dp"
+                android:textAlignment="center">
+            </TextView>
+
+            <Spinner
+                android:id="@+id/schedule_spinner1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+            </Spinner>
+            <Spinner
+                android:id="@+id/schedule_spinner2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+            </Spinner>
+
+            <View android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#BDBDBD" />
+
+            <TextView
+                android:id="@+id/TextView02"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dip"
+                android:text="Select Day and Start Time for class 2"
+                android:textSize="18dp"
+                android:textAlignment="center" >
+            </TextView>
+
+            <Spinner
+                android:id="@+id/schedule_spinner3"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+            </Spinner>
+            <Spinner
+                android:id="@+id/schedule_spinner4"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+            </Spinner>
+
+            <View android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#BDBDBD" />
+
+            <TextView
+                android:id="@+id/TextView03"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dip"
+                android:text="Select Day and Start Time for class 3"
+                android:textSize="18dp"
+                android:textAlignment="center" >
+            </TextView>
+
+            <Spinner
+                android:id="@+id/schedule_spinner5"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+            </Spinner>
+            <Spinner
+                android:id="@+id/schedule_spinner6"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+            </Spinner>
+
+            <View android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#BDBDBD" />
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginLeft="150dp"
+                android:background="@color/utaOrange"
+                android:text="@string/save"/>
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:src="@drawable/utap"
+                android:layout_marginStart="100dp"
+                android:layout_marginLeft="100dp" />
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+</ScrollView>

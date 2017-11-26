@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <!--tools:context="uta.utap.LotSettings-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/select_lot_preference_1"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/lot_spinner1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#BDBDBD" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/select_lot_preference_2"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/lot_spinner2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#BDBDBD" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/select_lot_preference_3"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/lot_spinner3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#BDBDBD" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/select_max_distance_from_destination"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/lot_spinner4"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#BDBDBD" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/select_maximum_wait_time"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/lot_spinner5"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#BDBDBD" />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/utaOrange"
+            android:text="@string/save" />
+
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
