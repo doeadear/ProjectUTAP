@@ -40,7 +40,7 @@
             android:name=".ColorSettingsActivity"
             android:label="Color Selection Page" />
         <activity
-            android:name=".LotSettings"
+            android:name=".LotSettingsActivity"
             android:label="Lot Preferences" />
         <activity
             android:name=".NotificationSettings"

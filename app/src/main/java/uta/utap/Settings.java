@@ -38,7 +38,7 @@ public class Settings extends AppCompatActivity {
     }
 
     public void GoLot(View view) {
-        Intent intent=new Intent(this, LotSettings.class);
+        Intent intent=new Intent(this, LotSettingsActivity.class);
         startActivity(intent);
     }
 
