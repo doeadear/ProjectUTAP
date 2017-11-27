@@ -43,7 +43,7 @@
             android:name=".LotSettingsActivity"
             android:label="Lot Preferences" />
         <activity
-            android:name=".NotificationSettings"
+            android:name=".NotificationSettingsActivity"
             android:label="Notifications Page" />
 
         <activity android:name=".Input_Schedule"></activity>

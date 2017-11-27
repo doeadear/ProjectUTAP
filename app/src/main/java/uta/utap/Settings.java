@@ -33,7 +33,7 @@ public class Settings extends AppCompatActivity {
     }
 
     public void GoNotification(View view) {
-        Intent intent=new Intent(this, NotificationSettings.class);
+        Intent intent=new Intent(this, NotificationSettingsActivity.class);
         startActivity(intent);
     }
 
