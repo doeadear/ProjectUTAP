@@ -69,6 +69,9 @@ public class ColorSettingsActivity extends AppCompatActivity
 //                      Insert method here
                         String message3="Color Green selected for full lot";
                         Toast.makeText(ColorSettingsActivity.this,message3, Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        break;
                 }
             }
             @Override
@@ -96,6 +99,9 @@ public class ColorSettingsActivity extends AppCompatActivity
 //                      Insert method here
                         String message3="Color Green selected for Busy lot";
                         Toast.makeText(ColorSettingsActivity.this,message3, Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        break;
                 }
             }
             @Override
@@ -123,6 +129,9 @@ public class ColorSettingsActivity extends AppCompatActivity
 //                      Insert method here
                         String message3="Color Green selected for empty lot";
                         Toast.makeText(ColorSettingsActivity.this,message3, Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        break;
                 }
             }
             @Override
