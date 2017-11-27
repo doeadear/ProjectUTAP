@@ -28,7 +28,7 @@ public class Settings extends AppCompatActivity {
     }
 
     public void GoColor(View view) {
-        Intent intent=new Intent(this, ColorSettings.class);
+        Intent intent=new Intent(this, ColorSettingsActivity.class);
         startActivity(intent);
     }
 

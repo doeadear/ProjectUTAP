@@ -37,7 +37,7 @@
             android:name=".SIgnup"
             android:label="Sign Up"></activity>
         <activity
-            android:name=".ColorSettings"
+            android:name=".ColorSettingsActivity"
             android:label="Color Selection Page" />
         <activity
             android:name=".LotSettings"
