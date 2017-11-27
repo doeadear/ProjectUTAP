@@ -31,10 +31,16 @@ public class AccountController
     public boolean createAccount(String uid)
     {
         boolean success = false;
+        boolean available = false;
 
         // TODO Add logic to query DBMgr for whether or not account already exists in client DB
+        available = true;
 
-        // TODO Add logic to create a new GuestUser
+        if(available)
+        {
+            m_User = new GuestUser(uid);
+            success = true;
+        }
 
         return success;
     }
@@ -43,10 +49,16 @@ public class AccountController
     public boolean createAccount(String uid, String password)
     {
         boolean success = false;
+        boolean available = false;
 
         // TODO Add logic to query DBMgr for whether or not account already exists in server DB
+        available = true;
 
-        // TODO Add logic to create a new RegisteredUser
+        if(available)
+        {
+            m_User = new RegisteredUser(uid, password);
+            success = true;
+        }
 
         return success;
     }
