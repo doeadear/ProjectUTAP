@@ -1,6 +1,7 @@
 package uta.utap;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -34,9 +35,19 @@ public class ColorSettingsActivity extends AppCompatActivity
 
         adapter=ArrayAdapter.createFromResource(this, R.array.Color_List, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         spinner1.setAdapter(adapter);
         spinner2.setAdapter(adapter);
         spinner3.setAdapter(adapter);
+
+        SettingsController sc = SettingsController.getInstance();
+        int unavailableColor = sc.getSettings().getColorSettings().getUnavailableColor();
+        int busyColor = sc.getSettings().getColorSettings().getBusyColor();
+        int availableColor = sc.getSettings().getColorSettings().getAvailableColor();
+
+        spinner1.setSelection(colorToPosition(unavailableColor));
+        spinner2.setSelection(colorToPosition(busyColor));
+        spinner3.setSelection(colorToPosition(availableColor));
 
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -127,6 +138,28 @@ public class ColorSettingsActivity extends AppCompatActivity
         startActivityForResult(myIntent, 0);
         return true;
 
+    }
+
+    // Helper methods
+    private int colorToPosition(int color)
+    {
+        int position = 0;
+        switch(color)
+        {
+            case Color.RED:
+                position = 0;
+                break;
+            case Color.YELLOW:
+                position = 1;
+                break;
+            case Color.GREEN:
+                position = 2;
+                break;
+            default:
+                break;
+        }
+
+        return position;
     }
 
 
