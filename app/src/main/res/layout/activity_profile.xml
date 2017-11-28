@@ -104,7 +104,8 @@
             android:layout_marginStart="65dp"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:onClick="SignUp"/>
         <Button
             android:id="@+id/button_log"
             android:layout_width="100dp"

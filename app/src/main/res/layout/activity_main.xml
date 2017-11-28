@@ -29,7 +29,7 @@
 
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:text="@string/sign_in"
+            android:text="@string/register_account"
             android:layout_centerInParent="true"
             android:onClick="SignUp"
             android:layout_below="@+id/log"/>

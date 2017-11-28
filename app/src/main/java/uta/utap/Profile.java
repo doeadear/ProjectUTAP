@@ -29,6 +29,11 @@ public class Profile extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void SignUp(View view) {
+        Intent intent = new Intent(this, SIgnup.class);
+        startActivity(intent);
+    }
+
     public void GoSchedule(View view) {
         Intent intent=new Intent(this, Input_Schedule.class);
         startActivity(intent);

@@ -29,13 +29,13 @@
             android:label="@string/title_activity_settings" />
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="Login" />
         <activity
             android:name=".Profile"
             android:label="Profile Page" />
         <activity
             android:name=".SIgnup"
-            android:label="Sign Up"></activity>
+            android:label="Register User Account" />
         <activity
             android:name=".ColorSettingsActivity"
             android:label="Color Selection Page" />
