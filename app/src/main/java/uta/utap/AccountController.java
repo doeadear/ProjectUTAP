@@ -33,8 +33,7 @@ public class AccountController
         boolean success = false;
         boolean available = false;
 
-        // TODO Add logic to query DBMgr for whether or not account already exists in client DB
-        available = true;
+        available = guestIdAvailable(uid);
 
         if(available)
         {
@@ -51,8 +50,7 @@ public class AccountController
         boolean success = false;
         boolean available = false;
 
-        // TODO Add logic to query DBMgr for whether or not account already exists in server DB
-        available = true;
+        available = registeredIdAvailable(uid);
 
         if(available)
         {
@@ -61,5 +59,24 @@ public class AccountController
         }
 
         return success;
+    }
+
+    public boolean guestIdAvailable(String uid)
+    {
+        boolean available = false;
+
+        // TODO Add logic to query DBMgr for whether or not account already exists in client DB
+
+        return available;
+    }
+
+    public boolean registeredIdAvailable(String uid)
+    {
+        boolean available = false;
+
+        // TODO Add logic to query DBMgr for whether or not account already exists in server DB
+
+        return available;
+
     }
 }
