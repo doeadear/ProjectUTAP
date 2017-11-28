@@ -6,7 +6,7 @@ import android.location.Location;
  * Created by emiko on 11/20/2017.
  */
 
-class Lot
+public class Lot
 {
     public enum Status { UNAVAILABLE, BUSY, AVAILABLE }
 
