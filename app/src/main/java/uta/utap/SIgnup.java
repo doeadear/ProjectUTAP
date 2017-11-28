@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -73,7 +74,15 @@ public class SIgnup extends AppCompatActivity implements LoaderCallbacks<Cursor>
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.password || id == EditorInfo.IME_NULL) {
-                    attemptRegister();
+                    // Store values at the time of the login attempt.
+                    String username = mUsernameView.getText().toString();
+                    String password = mPasswordView.getText().toString();
+
+                    if(attemptRegister(username, password))
+                    {
+                        Intent intent=new Intent(getApplicationContext(), Profile.class);
+                        startActivity(intent);
+                    }
                     return true;
                 }
                 return false;
@@ -84,7 +93,15 @@ public class SIgnup extends AppCompatActivity implements LoaderCallbacks<Cursor>
         mRegisterButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptRegister();
+                // Store values at the time of the login attempt.
+                String username = mUsernameView.getText().toString();
+                String password = mPasswordView.getText().toString();
+
+                if(attemptRegister(username, password))
+                {
+                    Intent intent=new Intent(getApplicationContext(), Profile.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -141,18 +158,17 @@ public class SIgnup extends AppCompatActivity implements LoaderCallbacks<Cursor>
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptRegister() {
+    private boolean attemptRegister(String username, String password)
+    {
+        boolean success = false;
+
         if (mAuthTask != null) {
-            return;
+            return false;
         }
 
         // Reset errors.
         mUsernameView.setError(null);
         mPasswordView.setError(null);
-
-        // Store values at the time of the login attempt.
-        String username = mUsernameView.getText().toString();
-        String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -169,8 +185,8 @@ public class SIgnup extends AppCompatActivity implements LoaderCallbacks<Cursor>
             mUsernameView.setError(getString(R.string.error_field_required));
             focusView = mUsernameView;
             cancel = true;
-        } else if (!isUsernameValid(username, password)) {
-            mUsernameView.setError(getString(R.string.error_invalid_email));
+        } else if (!isUsernameAvailable(username, password)) {
+            mUsernameView.setError("Username not available");
             focusView = mUsernameView;
             cancel = true;
         }
@@ -180,26 +196,31 @@ public class SIgnup extends AppCompatActivity implements LoaderCallbacks<Cursor>
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(username, password);
-            mAuthTask.execute((Void) null);
+            if(TextUtils.isEmpty(password))
+            {
+                success = AccountController.getInstance().createAccount(username);
+            }
+            else
+            {
+                success = AccountController.getInstance().createAccount(username, password);
+            }
         }
+
+        return success;
     }
 
-    private boolean isUsernameValid(String username, String password) {
-        boolean valid = false;
+    private boolean isUsernameAvailable(String username, String password) {
+        boolean available = false;
 
         if(TextUtils.isEmpty(password))
         {
-            valid = AccountController.getInstance().guestIdAvailable(username);
+            available = AccountController.getInstance().guestIdAvailable(username);
         }
         else
         {
-            valid = AccountController.getInstance().registeredIdAvailable(username);
+           available = AccountController.getInstance().registeredIdAvailable(username);
         }
-        return valid;
+        return available;
     }
 
     private boolean isPasswordValid(String password) {
