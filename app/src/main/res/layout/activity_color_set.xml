@@ -20,22 +20,22 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="270dp"
+                android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:paddingLeft="20dp"
+                android:paddingLeft="10dp"
                 android:text="@string/choose_color_for_full_parking"
                 android:textColor="@android:color/black"
-                android:textSize="18sp"
+                android:textSize="16sp"
                  />
 
             <Spinner
                 android:id="@+id/spinner1"
-                android:layout_width="70dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="30dp"
-                android:layout_marginStart="30dp">
+                android:layout_marginLeft="0dp"
+                android:layout_marginStart="0dp">
 
             </Spinner>
 
@@ -52,22 +52,22 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="270dp"
+                android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:paddingLeft="20dp"
+                android:paddingLeft="10dp"
                 android:text="@string/choose_color_for_busy_parking"
                 android:textColor="@android:color/black"
-                android:textSize="18sp"
+                android:textSize="16sp"
                  />
 
             <Spinner
                 android:id="@+id/spinner2"
-                android:layout_width="70dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="30dp"
-                android:layout_marginStart="30dp">
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="0dp">
 
             </Spinner>
 
@@ -84,22 +84,22 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="270dp"
+                android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:paddingLeft="20dp"
+                android:paddingLeft="10dp"
                 android:text="@string/choose_color_for_free_parking"
                 android:textColor="@android:color/black"
-                android:textSize="18sp"
+                android:textSize="16sp"
                  />
 
             <Spinner
                 android:id="@+id/spinner3"
-                android:layout_width="70dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="30dp"
-                android:layout_marginStart="30dp" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="0dp" />
 
         </LinearLayout>
 
