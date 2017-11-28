@@ -43,4 +43,10 @@ public class RegisteredUser extends User
 
         return hashPassword.equals(m_Password);
     }
+
+    // Abstract methods
+    public boolean isRegisteredUser()
+    {
+        return true;
+    }
 }

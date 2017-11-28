@@ -12,4 +12,10 @@ public class GuestUser extends User
     {
         super(name);
     }
+
+    // Abstract methods
+    public boolean isRegisteredUser()
+    {
+        return false;
+    }
 }
