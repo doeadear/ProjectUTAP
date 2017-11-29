@@ -15,17 +15,10 @@ instapk.log*
 .idea/misc.xml
 .idea/runConfigurations.xml
 .idea/misc.xml
-app/build.gradle
-build.gradle
 gradle/wrapper/gradle-wrapper.properties
 instapk.properties
 .idea/misc.xml
 *.properties
 *.properties
-*.gradle
-*.gradle
-*.xml
-app/build.gradle
-build.gradle
 gradle/wrapper/gradle-wrapper.properties
 *.gradle
