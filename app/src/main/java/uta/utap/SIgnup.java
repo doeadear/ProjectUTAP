@@ -22,8 +22,6 @@ public class SIgnup extends AppCompatActivity
     // UI references.
     private AutoCompleteTextView mUsernameView;
     private EditText mPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +65,6 @@ public class SIgnup extends AppCompatActivity
                 }
             }
         });
-
-//        mLoginFormView = findViewById(R.id.login_form);
-//        mProgressView = findViewById(R.id.login_progress);
     }
 
 
