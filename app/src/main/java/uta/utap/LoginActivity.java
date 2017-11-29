@@ -119,8 +119,7 @@ public class LoginActivity extends AppCompatActivity
                 {
                     if (((RegisteredUser) user).verifyPassword(password))
                     {
-                        ((RegisteredUser) AccountController.getInstance().getUser())
-                                .setActiveUser((RegisteredUser) user);
+                        AccountController.getInstance().setUser(user);
                         success = true;
                     }
                     else
@@ -130,7 +129,7 @@ public class LoginActivity extends AppCompatActivity
                 }
                 else
                 {
-                    AccountController.getInstance().getUser().setActiveUser(user);
+                    AccountController.getInstance().setUser(user);
                     success = true;
                 }
 

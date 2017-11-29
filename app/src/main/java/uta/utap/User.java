@@ -19,13 +19,6 @@ public abstract class User {
         m_Destination = new Location("");
     }
 
-    public void setActiveUser(User user)
-    {
-        this.m_Name = user.m_Name;
-        this.m_Settings = user.m_Settings;
-        m_Destination.reset();
-    }
-
     // Accessor methods
     public String getName()
     {

@@ -19,13 +19,6 @@ public class RegisteredUser extends User
         setPassword(password);
     }
 
-    public void setActiveUser(RegisteredUser user)
-    {
-        super.setActiveUser(user);
-        m_Salt = user.getSalt();
-        m_Password = user.getPassword();
-    }
-
     // Accessor methods
     private byte[] getSalt()
     {

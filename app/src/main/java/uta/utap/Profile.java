@@ -24,13 +24,17 @@ public class Profile extends AppCompatActivity {
 
         AccountController ac = AccountController.getInstance();
 
+        Button registerButton = (Button) findViewById(R.id.button_reg);
+        Button loginButton = (Button) findViewById(R.id.button_log);
+
         if(ac.getUser().isRegisteredUser())
         {
-            Button registerButton = (Button) findViewById(R.id.button_reg);
             registerButton.setEnabled(false);
-
-            Button loginButton = (Button) findViewById(R.id.button_log);
-            loginButton.setEnabled(false);
+        }
+        else
+        {
+            registerButton.setEnabled(true);
+            loginButton.setEnabled(true);
         }
     }
 

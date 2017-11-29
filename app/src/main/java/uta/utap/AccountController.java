@@ -34,6 +34,11 @@ public class AccountController
         return m_User;
     }
 
+    public void setUser(User user)
+    {
+        m_User = user;
+    }
+
     // Create guest account
     public boolean createAccount(String uid)
     {
