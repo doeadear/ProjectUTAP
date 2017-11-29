@@ -16,6 +16,7 @@ public abstract class User {
     {
         m_Name = name;
         m_Settings = new UtappSettings();
+        m_Destination = new Location("");
     }
 
     public void setActiveUser(User user)

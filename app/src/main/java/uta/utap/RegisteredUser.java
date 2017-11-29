@@ -19,13 +19,20 @@ public class RegisteredUser extends User
         setPassword(password);
     }
 
+    public void setActiveUser(RegisteredUser user)
+    {
+        super.setActiveUser(user);
+        m_Salt = user.getSalt();
+        m_Password = user.getPassword();
+    }
+
     // Accessor methods
-    public byte[] getSalt()
+    private byte[] getSalt()
     {
         return m_Salt;
     }
 
-    public String getPassword()
+    private String getPassword()
     {
         return m_Password;
     }
