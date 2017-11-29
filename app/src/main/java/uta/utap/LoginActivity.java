@@ -20,7 +20,7 @@ import android.widget.TextView;
 public class LoginActivity extends AppCompatActivity
 {
     // UI references.
-    private AutoCompleteTextView mEmailView;
+    private AutoCompleteTextView mUsernameView;
     private EditText mPasswordView;
 
     @Override
@@ -29,14 +29,18 @@ public class LoginActivity extends AppCompatActivity
         setContentView(R.layout.activity_login);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mUsernameView = (AutoCompleteTextView) findViewById(R.id.username);
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.password || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
+                    if(attemptLogin())
+                    {
+                        Intent intent = new Intent(getApplicationContext(), Profile.class);
+                        startActivity(intent);
+                    }
                     return true;
                 }
                 return false;
@@ -47,7 +51,11 @@ public class LoginActivity extends AppCompatActivity
         mLoginButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                if(attemptLogin())
+                {
+                    Intent intent = new Intent(getApplicationContext(), Profile.class);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -65,13 +73,16 @@ public class LoginActivity extends AppCompatActivity
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLogin() {
+    private boolean attemptLogin()
+    {
+        boolean success = false;
+
         // Reset errors.
-        mEmailView.setError(null);
+        mUsernameView.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
+        String username = mUsernameView.getText().toString();
         String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
@@ -85,13 +96,13 @@ public class LoginActivity extends AppCompatActivity
         }
 
         // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
+        if (TextUtils.isEmpty(username)) {
+            mUsernameView.setError(getString(R.string.error_field_required));
+            focusView = mUsernameView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
+        } else if (!isUsernameValid(username, password)) {
+            mUsernameView.setError("No account exists for username");
+            focusView = mUsernameView;
             cancel = true;
         }
 
@@ -100,13 +111,41 @@ public class LoginActivity extends AppCompatActivity
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // TODO attempt login
+            // Attempt login
+            User user = AccountController.getInstance().getUserAccount(username);
+            if(user != null)
+            {
+                if(user.isRegisteredUser())
+                {
+                    if (((RegisteredUser) user).verifyPassword(password))
+                    {
+                        ((RegisteredUser) AccountController.getInstance().getUser())
+                                .setActiveUser((RegisteredUser) user);
+                        success = true;
+                    }
+                    else
+                    {
+                        mPasswordView.setError("Incorrect password");
+                    }
+                }
+                else
+                {
+                    AccountController.getInstance().getUser().setActiveUser(user);
+                    success = true;
+                }
+
+            }
         }
+
+        return success;
     }
 
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
+    private boolean isUsernameValid(String username, String password) {
+        boolean valid = false;
+
+        valid = (AccountController.getInstance().getUserAccount(username) != null);
+
+        return valid;
     }
 
     private boolean isPasswordValid(String password) {
