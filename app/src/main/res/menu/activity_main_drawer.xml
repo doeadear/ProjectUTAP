@@ -10,9 +10,11 @@
             android:id="@+id/nav_setting"
             android:icon="@drawable/ic_settings_black_24dp"
             android:title="@string/title_activity_settings" />
+        <item
+            android:id="@+id/map"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="Map" />
 
     </group>
-
-
 
 </menu>

@@ -1,5 +1,7 @@
 package uta.utap;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +18,9 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private Fragment fragment;
+    FragmentManager fragmentManager = getFragmentManager();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,14 +28,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -40,6 +37,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        fragmentManager.beginTransaction().replace(R.id.main_container, new MapFragment()).commit();
     }
 
     @Override
@@ -53,21 +51,25 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_profile) {
-
-            Intent intent=new Intent(this, Profile.class);
+        if (id == R.id.map) {
+            fragment = new MapFragment();
+            fragmentManager.beginTransaction().replace(R.id.main_container, fragment).commit();
+        }
+        else if(id == R.id.nav_profile)
+        {
+            Intent intent = new Intent(this, Profile.class);
             startActivity(intent);
-            //
-        } else if (id == R.id.nav_setting) {
-
-            Intent intent=new Intent(this, Settings.class);
+        }
+        else if(id == R.id.nav_setting)
+        {
+            Intent intent = new Intent(this, Settings.class);
             startActivity(intent);
         }
 
@@ -75,7 +77,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
     public void Login(View view) {
         Intent intent=new Intent(this, LoginActivity.class);
