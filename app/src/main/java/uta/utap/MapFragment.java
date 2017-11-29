@@ -24,8 +24,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapFragment extends Fragment
 {
     MapView mapView;
-    LatLng position = new LatLng(37.77493, -122.41942);
-    String markerText = "San Fransisco";
+    LatLng position = new LatLng(32.736442, -97.117285);
+    String markerText = "UTA";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class MapFragment extends Fragment
                 Marker marker  = googleMap.addMarker(new MarkerOptions().position(position).title(markerText));
 
                 //zoom to position with level 16
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(position, 16);
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(position, 15);
                 googleMap.animateCamera(cameraUpdate);
             }
         });
