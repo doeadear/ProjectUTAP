@@ -58,11 +58,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.map) {
-            fragment = new MapFragment();
-            fragmentManager.beginTransaction().replace(R.id.main_container, fragment).commit();
-        }
-        else if(id == R.id.nav_profile)
+        if(id == R.id.nav_profile)
         {
             Intent intent = new Intent(this, Profile.class);
             startActivity(intent);
