@@ -19,6 +19,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 
+import java.util.ArrayList;
+
 
 /**
  * Created by emiko on 11/28/2017.
@@ -49,13 +51,18 @@ public class MapFragment extends Fragment
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(position, 15);
                 googleMap.animateCamera(cameraUpdate);
 
-                Polygon[] lotPolys =
-                        {
+                ArrayList<Lot> lots = LotController.getInstance().getLots();
+
+                for(int i = 0; i < lots.size(); i++)
+                {
+                        Polygon lotPoly =
                                 googleMap.addPolygon(new PolygonOptions()
-                                        .add(new LatLng(32.724229, -97.129930), new LatLng(32.723561, -97.129938), new LatLng(32.723581, -97.130314), new LatLng(32.724226, -97.130306))
-                                        .strokeColor(Color.GREEN)
-                                        .fillColor(Color.GREEN))
-                        };
+                                .addAll(lots.get(i).getPolyPoints())
+                                .strokeColor(Color.GREEN)
+                                .fillColor(Color.GREEN));
+
+                        LotController.getInstance().addLotPoly(lots.get(i), lotPoly);
+                }
             }
         });
 

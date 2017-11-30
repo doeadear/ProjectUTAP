@@ -10,8 +10,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Vector;
 
 /**
  * Created by emiko on 11/29/2017.
@@ -21,10 +24,27 @@ public class LotController
 {
     private static final LotController lotController = new LotController();
     private static HashMap<Lot, Polygon> m_StatusColors = new HashMap<>();
+    private ArrayList<Lot> m_Lots;
 
     private LotController()
     {
+        m_Lots = new ArrayList<>();
+        createLots();
+    }
 
+    public static LotController getInstance()
+    {
+        return lotController;
+    }
+
+    public void addLotPoly(Lot lot, Polygon poly)
+    {
+        m_StatusColors.put(lot, poly);
+    }
+
+    public ArrayList<Lot> getLots()
+    {
+        return m_Lots;
     }
 
     private void createLots()
@@ -57,12 +77,27 @@ public class LotController
                         {32.723125, -97.110576}
                 };
 
-//      for(int i = 0; i < studentLotLocations.length; i++)
-//      {
+        double[][][] polyPoints =
+                {
+                        {{32.724229, -97.129930}, {32.723561, -97.129938}, {32.723581, -97.130314}, {32.724226, -97.130306}}
+                };
 
-//      }
-        location.setLatitude(studentLotLoc[0][0]);
-        location.setLongitude(studentLotLoc[0][1]);
+        Vector<LatLng> points = new Vector<>();
+
+        for(int i = 0; i < studentLotLoc.length && i < polyPoints.length; i++)
+        {
+            points.clear();
+
+            for(int j = 0; j < polyPoints[i].length; j++)
+            {
+                points.addElement(new LatLng(polyPoints[i][j][0], polyPoints[i][j][1]));
+            }
+
+            location.setLatitude(studentLotLoc[i][0]);
+            location.setLongitude(studentLotLoc[i][1]);
+
+            m_Lots.add(new Lot(location, points, false, defaultStatus));
+        }
     }
 
 

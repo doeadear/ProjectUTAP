@@ -2,6 +2,10 @@ package uta.utap;
 
 import android.location.Location;
 
+import com.google.android.gms.maps.model.LatLng;
+
+import java.util.Vector;
+
 /**
  * Created by emiko on 11/20/2017.
  */
@@ -13,13 +17,15 @@ public class Lot
     private Location m_Location; // Center of the lot
     private boolean m_FacultyOnly; // Faculty only lot
     private Status m_Status;  // Lot status
+    private Vector<LatLng> m_PolyPoints;
 
     // Constructor
-    public Lot(Location location, boolean facultyOnly, Status status)
+    public Lot(Location location, Vector<LatLng> points, boolean facultyOnly, Status status)
     {
         m_Location = location;
         m_FacultyOnly = facultyOnly;
         m_Status = status;
+        m_PolyPoints = points;
     }
 
     // Accessor methods
@@ -36,6 +42,11 @@ public class Lot
     public boolean isFacultyOnly()
     {
         return m_FacultyOnly;
+    }
+
+    public Vector<LatLng> getPolyPoints()
+    {
+        return m_PolyPoints;
     }
 
     public void setStatus(Status status)
