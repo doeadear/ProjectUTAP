@@ -1,8 +1,14 @@
 package uta.utap;
 
+import android.app.FragmentManager;
+import android.graphics.Color;
 import android.location.Location;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,9 +29,10 @@ public class LotController
 
     private void createLots()
     {
+        Lot.Status defaultStatus = Lot.Status.AVAILABLE;
         Location location = new Location("");
 
-        double[][] studentLotLocations =
+        double[][] studentLotLoc =
                 {
                         {32.724090, -97.130127},
                         {32.727163, -97.126912},
@@ -50,6 +57,12 @@ public class LotController
                         {32.723125, -97.110576}
                 };
 
+//      for(int i = 0; i < studentLotLocations.length; i++)
+//      {
+
+//      }
+        location.setLatitude(studentLotLoc[0][0]);
+        location.setLongitude(studentLotLoc[0][1]);
     }
 
 
