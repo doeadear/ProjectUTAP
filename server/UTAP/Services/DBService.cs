@@ -43,10 +43,10 @@ namespace UTAP.Services
                     user.m_AvailableColor = dr.GetInt16(3);
                     user.m_BusyColor = dr.GetInt16(4);
                     user.m_UnavailableColor = dr.GetInt16(5);
-
-                    dr.Close();
-                    dr.Dispose();
                 }
+
+                dr.Close();
+                dr.Dispose();
 
                 conn.Close();
                 conn.Dispose();
@@ -65,7 +65,7 @@ namespace UTAP.Services
             };
         }
 
-        public Dictionary<string, object> GetLots(int lot_id, string location, string status, string facultyOnly)
+        public Dictionary<string, object> GetLots(LotView _lot)
         {
             List<Lot> lots = new List<Lot>();
             string message = "";
@@ -82,10 +82,10 @@ namespace UTAP.Services
                 cmd.Connection = conn;
                 cmd.CommandText = "select * from lots where 1 ";
 
-                if (lot_id != 0) cmd.CommandText += string.Format("and lot_id = '{0}' ", lot_id);
-                if (!string.IsNullOrEmpty(location)) cmd.CommandText += string.Format("and location = '{0}' ", location);
-                if (!string.IsNullOrEmpty(status)) cmd.CommandText += string.Format("and status = '{0}' ", status);
-                if (!string.IsNullOrEmpty(facultyOnly)) cmd.CommandText += string.Format("and facultyOnly = '{0}' ", facultyOnly);
+                if (_lot.lot_id != 0) cmd.CommandText += string.Format("and lot_id = '{0}' ", _lot.lot_id);
+                if (!string.IsNullOrEmpty(_lot.location)) cmd.CommandText += string.Format("and location = '{0}' ", _lot.location);
+                if (!string.IsNullOrEmpty(_lot.status)) cmd.CommandText += string.Format("and status = '{0}' ", _lot.status);
+                if (!string.IsNullOrEmpty(_lot.facultyOnly)) cmd.CommandText += string.Format("and facultyOnly = '{0}' ", _lot.facultyOnly);
 
                 MySqlDataReader dr = cmd.ExecuteReader();
 
@@ -102,10 +102,10 @@ namespace UTAP.Services
 
                         lots.Add(lot);
                     }
-
-                    dr.Close();
-                    dr.Dispose();
                 }
+
+                dr.Close();
+                dr.Dispose();
 
                 conn.Close();
                 conn.Dispose();
@@ -147,10 +147,10 @@ namespace UTAP.Services
                     schedule.lot_id = dr.GetString(1);
                     schedule.m_MaxLotDistance = dr.GetDouble(2);
                     schedule.m_MaxWaitTime = dr.GetDecimal(3);
-
-                    dr.Close();
-                    dr.Dispose();
                 }
+
+                dr.Close();
+                dr.Dispose();
 
                 conn.Close();
                 conn.Dispose();
@@ -166,6 +166,39 @@ namespace UTAP.Services
                 { "Success", success},
                 { "Message", message },
                 { "Data", new {schedule } }
+            };
+        }
+
+        public Dictionary<string, object> AddSchedules(ScheduleView schedule)
+        {
+            string message = "";
+            int result = 0;
+
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(
+                    string.Format(
+                        @"INSERT INTO `schedules`(`uid`, `lot_id`, `m_MaxLotDistance`, `m_MaxWaitTime`) VALUES ({0},{1},{2},{3})",
+                        schedule.uid, schedule.lot_id, schedule.m_MaxLotDistance, schedule.m_MaxWaitTime), conn);
+
+                result = cmd.ExecuteNonQuery();
+
+                conn.Close();
+                conn.Dispose();
+            }
+            catch (MySqlException e)
+            {
+                message = e.ToString();
+            }
+
+            return new Dictionary<string, object>() {
+                { "Success", result==1},
+                { "Message", message },
+                { "Data", new { } }
             };
         }
     }
