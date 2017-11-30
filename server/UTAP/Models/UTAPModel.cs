@@ -10,6 +10,14 @@
         public int m_UnavailableColor { get; set; }
     }
 
+    public class Lot
+    {
+        public int lot_id { get; set; }
+        public string location { get; set; }
+        public string status { get; set; }
+        public string facultyOnly { get; set; }
+    }
+
     public class Schedule
     {
         public string uid { get; set; }

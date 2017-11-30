@@ -65,6 +65,65 @@ namespace UTAP.Services
             };
         }
 
+        public Dictionary<string, object> GetLots(int lot_id, string location, string status, string facultyOnly)
+        {
+            List<Lot> lots = new List<Lot>();
+            string message = "";
+            bool success = false;
+
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.Connection = conn;
+                cmd.CommandText = "select * from lots where 1 ";
+
+                if (lot_id != 0) cmd.CommandText += string.Format("and lot_id = '{0}' ", lot_id);
+                if (!string.IsNullOrEmpty(location)) cmd.CommandText += string.Format("and location = '{0}' ", location);
+                if (!string.IsNullOrEmpty(status)) cmd.CommandText += string.Format("and status = '{0}' ", status);
+                if (!string.IsNullOrEmpty(facultyOnly)) cmd.CommandText += string.Format("and facultyOnly = '{0}' ", facultyOnly);
+
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        Lot lot = new Lot();
+
+                        lot.lot_id = dr.GetInt16(0);
+                        lot.location = dr.GetString(1);
+                        lot.status = dr.GetString(2);
+                        lot.facultyOnly = dr.GetString(3);
+
+                        lots.Add(lot);
+                    }
+
+                    dr.Close();
+                    dr.Dispose();
+                }
+
+                conn.Close();
+                conn.Dispose();
+
+                success = true;
+            }
+            catch (MySqlException e)
+            {
+                message = e.ToString();
+            }
+
+            return new Dictionary<string, object>() {
+                { "Success", success},
+                { "Message", message },
+                { "Data", new  {lots=lots.ToArray() } }
+            };
+        }
+
         public Dictionary<string, object> GetSchedules(string uid, string lot_id)
         {
             string message = "";

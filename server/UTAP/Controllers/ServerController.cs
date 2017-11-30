@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 using UTAP.Services;
+using UTAP.Models;
 
 namespace UTAP.Controllers
 {
@@ -17,6 +18,12 @@ namespace UTAP.Controllers
         public Dictionary<string, object> GetUser(string uid)
         {
             return DBMgr.GetUser(uid);
+        }
+
+        [HttpPost]
+        public Dictionary<string, object> GetLots(int lot_id = 0, string location = "", string status = "", string facultyOnly = "")
+        {
+            return DBMgr.GetLots(lot_id, location, status, facultyOnly);
         }
 
         [HttpGet]
