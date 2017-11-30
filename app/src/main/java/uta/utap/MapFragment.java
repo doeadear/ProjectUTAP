@@ -55,13 +55,14 @@ public class MapFragment extends Fragment
 
                 for(int i = 0; i < lots.size(); i++)
                 {
-                        Polygon lotPoly =
-                                googleMap.addPolygon(new PolygonOptions()
-                                .addAll(lots.get(i).getPolyPoints())
-                                .strokeColor(Color.GREEN)
-                                .fillColor(Color.GREEN));
+                    // TODO set fill color based on lot status
+                    Polygon lotPoly =
+                            googleMap.addPolygon(new PolygonOptions()
+                            .addAll(lots.get(i).getPolyPoints())
+                            .strokeColor(Color.GREEN)
+                            .fillColor(Color.GREEN));
 
-                        LotController.getInstance().addLotPoly(lots.get(i), lotPoly);
+                    LotController.getInstance().addLotPoly(lots.get(i), lotPoly);
                 }
             }
         });

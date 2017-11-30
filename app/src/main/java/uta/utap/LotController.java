@@ -1,19 +1,12 @@
 package uta.utap;
 
-import android.app.FragmentManager;
-import android.graphics.Color;
 import android.location.Location;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Polygon;
-import com.google.android.gms.maps.model.PolygonOptions;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Vector;
 
 /**
@@ -37,14 +30,19 @@ public class LotController
         return lotController;
     }
 
-    public void addLotPoly(Lot lot, Polygon poly)
-    {
-        m_StatusColors.put(lot, poly);
-    }
-
     public ArrayList<Lot> getLots()
     {
         return m_Lots;
+    }
+
+    public Polygon getLotPoly(Lot lot)
+    {
+        return m_StatusColors.get(lot);
+    }
+
+    public void addLotPoly(Lot lot, Polygon poly)
+    {
+        m_StatusColors.put(lot, poly);
     }
 
     private void createLots()
@@ -52,6 +50,7 @@ public class LotController
         Lot.Status defaultStatus = Lot.Status.AVAILABLE;
         Location location = new Location("");
 
+        // TODO add some faculty lots too
         double[][] studentLotLoc =
                 {
                         {32.724090, -97.130127},
@@ -77,6 +76,7 @@ public class LotController
                         {32.723125, -97.110576}
                 };
 
+        // TODO finish adding lot poly points
         double[][][] polyPoints =
                 {
                         {{32.724229, -97.129930}, {32.723561, -97.129938}, {32.723581, -97.130314}, {32.724226, -97.130306}},
