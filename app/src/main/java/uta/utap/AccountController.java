@@ -90,6 +90,11 @@ public class AccountController
         boolean available = false;
 
         // TODO Add logic to query DBMgr for whether or not account already exists in server DB
+
+        //GET: ../api/Server/GetUser?uid=test
+        //INPUT: uid: userid
+        //OUTPUT: "user":{"uid":"test","email":"test","password":"test","m_AvailableColor":0,"m_BusyColor":0,"m_UnavailableColor":0}}
+
         available = (getUserAccount(uid) == null) || (!getUserAccount(uid).isRegisteredUser());
 
         return available;
