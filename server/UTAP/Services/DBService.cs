@@ -18,6 +18,39 @@ namespace UTAP.Services
             connStr = "server=" + dbHost + ";uid=" + dbUser + ";pwd=" + dbPass + ";database=" + dbName;
         }
 
+        public Dictionary<string, object> Register(UserView user)
+        {
+            string message = "";
+            int result = 0;
+
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(
+                    string.Format(
+                        @"INSERT INTO `user`(`uid`, `email`, `password`, `m_AvailableColor`, `m_BusyColor`, `m_UnavailableColor`)  VALUES ({0},{1},{2},{3},{4},{5})",
+                        user.uid, user.email, user.password, user.m_AvailableColor, user.m_BusyColor, user.m_UnavailableColor), conn);
+
+                result = cmd.ExecuteNonQuery();
+
+                conn.Close();
+                conn.Dispose();
+            }
+            catch (MySqlException e)
+            {
+                message = e.ToString();
+            }
+
+            return new Dictionary<string, object>() {
+                { "Success", result==1},
+                { "Message", message },
+                { "Data", new { } }
+            };
+        }
+
         public Dictionary<string, object> GetUser(string uid)
         {
             string message = "";

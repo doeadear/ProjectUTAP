@@ -14,6 +14,12 @@ namespace UTAP.Controllers
             DBMgr = new DBService();
         }
 
+        [HttpPost]
+        public Dictionary<string, object> Register(UserView user)
+        {
+            return DBMgr.Register(user);
+        }
+
         [HttpGet]
         public Dictionary<string, object> GetUser(string uid)
         {

@@ -10,6 +10,16 @@
         public int m_UnavailableColor { get; set; }
     }
 
+    public class UserView
+    {
+        public string uid { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
+        public int m_AvailableColor { get; set; }
+        public int m_BusyColor { get; set; }
+        public int m_UnavailableColor { get; set; }
+    }
+
     public class Lot
     {
         public int lot_id { get; set; }
