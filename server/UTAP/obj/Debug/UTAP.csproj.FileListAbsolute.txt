@@ -80,6 +80,6 @@ C:\ProjectUTAP\server\UTAP\bin\zh-Hant\System.Web.Razor.resources.dll
 C:\ProjectUTAP\server\UTAP\bin\zh-Hant\System.Web.WebPages.resources.dll
 C:\ProjectUTAP\server\UTAP\bin\zh-Hant\System.Web.WebPages.Deployment.resources.dll
 C:\ProjectUTAP\server\UTAP\bin\zh-Hant\System.Web.WebPages.Razor.resources.dll
-C:\ProjectUTAP\server\UTAP\obj\Debug\UTAP.csprojResolveAssemblyReference.cache
 C:\ProjectUTAP\server\UTAP\obj\Debug\UTAP.dll
 C:\ProjectUTAP\server\UTAP\obj\Debug\UTAP.pdb
+C:\ProjectUTAP\server\UTAP\obj\Debug\UTAP.csprojResolveAssemblyReference.cache

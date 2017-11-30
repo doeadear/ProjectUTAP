@@ -14,6 +14,12 @@ namespace UTAP.Controllers
             DBMgr = new DBService();
         }
 
+        [HttpPost]
+        public Dictionary<string, object> Register(UserView user)
+        {
+            return DBMgr.Register(user);
+        }
+
         [HttpGet]
         public Dictionary<string, object> GetUser(string uid)
         {
@@ -21,15 +27,21 @@ namespace UTAP.Controllers
         }
 
         [HttpPost]
-        public Dictionary<string, object> GetLots(int lot_id = 0, string location = "", string status = "", string facultyOnly = "")
+        public Dictionary<string, object> GetLots(LotView lot)
         {
-            return DBMgr.GetLots(lot_id, location, status, facultyOnly);
+            return DBMgr.GetLots(lot);
         }
 
         [HttpGet]
         public Dictionary<string, object> GetSchedules(string uid, string lot_id)
         {
             return DBMgr.GetSchedules(uid, lot_id);
+        }
+
+        [HttpPost]
+        public Dictionary<string, object> AddSchedules(ScheduleView schedule)
+        {
+            return DBMgr.AddSchedules(schedule);
         }
     }
 }

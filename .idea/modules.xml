@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ProjectUTAP.iml" filepath="$PROJECT_DIR$/ProjectUTAP.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\ProjectUTAP\app\app.iml" filepath="C:\ProjectUTAP\app\app.iml" />
     </modules>
   </component>
 </project>
