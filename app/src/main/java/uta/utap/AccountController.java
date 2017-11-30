@@ -93,7 +93,7 @@ public class AccountController
 
         //GET: ../api/Server/GetUser?uid=test
         //INPUT: uid: userid
-        //OUTPUT: "user":{"uid":"test","email":"test","password":"test","m_AvailableColor":0,"m_BusyColor":0,"m_UnavailableColor":0}}
+        //OUTPUT: {"Success":true,"Message":"","Data":{"user":{"uid":"test","email":"test","password":"test","m_AvailableColor":0,"m_BusyColor":0,"m_UnavailableColor":0}}}
 
         available = (getUserAccount(uid) == null) || (!getUserAccount(uid).isRegisteredUser());
 

@@ -18,5 +18,11 @@ namespace UTAP.Controllers
         {
             return DBMgr.GetUser(uid);
         }
+
+        [HttpGet]
+        public Dictionary<string, object> GetSchedules(string uid, string lot_id)
+        {
+            return DBMgr.GetSchedules(uid, lot_id);
+        }
     }
 }
