@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -71,11 +72,19 @@ public class MainActivity extends AppCompatActivity
         PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
+        autocompleteFragment.setHint("Enter destination");
         autocompleteFragment.setBoundsBias(new LatLngBounds(new LatLng(32.721236, -97.131974),new LatLng(32.735572, -97.102780)));
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
                 // TODO: Get info about the selected place.
+                Location destination = new Location("");
+                destination.setLatitude(place.getLatLng().latitude);
+                destination.setLongitude(place.getLatLng().longitude);
+
+                AccountController.getInstance().getUser().setDestination(destination);
+                centerMap(place);
+
             }
 
             @Override
@@ -131,34 +140,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 //  public void onMapSearch(View view) {
-//      MapFragment mapFragment = new MapFragment();
-//      MapView mapView = mapFragment.getMapView();
-
-//      mapView.getMapAsync(new OnMapReadyCallback() {
-//          @Override
-//          public void onMapReady(GoogleMap googleMap) {
-//              Log.i("DEBUG", "onMapReady");
-
-//              EditText locationSearch = (EditText) findViewById(R.id.searchBox);
-//              String location = "";
-//              location = locationSearch.getText().toString();
-//              List<Address> addressList = null;
-
-//              if (location != null || !location.equals("")) {
-//                  Geocoder geocoder = new Geocoder(getApplicationContext());
-//                  try {
-//                      addressList = geocoder.getFromLocationName(location, 1);
-
-//                  } catch (IOException e) {
-//                      e.printStackTrace();
-//                  }
-//                  Address address = addressList.get(0);
-//                  LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-//                  googleMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
-//                  googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-//              }
-//          }
-//      });
 //  }
 
 //  public void onEnterDestination(View view)
@@ -175,21 +156,21 @@ public class MainActivity extends AppCompatActivity
 //      }
 //  }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                Place place = PlaceAutocomplete.getPlace(this, data);
-//              EditText searchBar = (EditText) findViewById(R.id.searchBox);
-//              searchBar.setBackgroundColor(Color.WHITE);
+    private void centerMap(final Place place)
+    {
+        MapView mapView = (MapView) findViewById(R.id.mapView);
+        mapView.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                Log.i("DEBUG", "onMapReady");
 
-            } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
-                Status status = PlaceAutocomplete.getStatus(this, data);
-                // TODO: Handle the error.
-
-            } else if (resultCode == RESULT_CANCELED) {
-                // The user canceled the operation.
+                googleMap.clear();
+                googleMap.addMarker(new MarkerOptions().position(place.getLatLng())
+                                                       .title(place.getName().toString()));
+                googleMap.animateCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
             }
-        }
+        });
+
     }
+
 }
