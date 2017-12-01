@@ -1,0 +1,8 @@
+C:\ProjectUTAP\server_tcp\ConsoleClient\bin\Debug\ConsoleClient.exe.config
+C:\ProjectUTAP\server_tcp\ConsoleClient\bin\Debug\ConsoleClient.exe
+C:\ProjectUTAP\server_tcp\ConsoleClient\bin\Debug\ConsoleClient.pdb
+C:\ProjectUTAP\server_tcp\ConsoleClient\bin\Debug\CommunicationBase.dll
+C:\ProjectUTAP\server_tcp\ConsoleClient\bin\Debug\CommunicationBase.pdb
+C:\ProjectUTAP\server_tcp\ConsoleClient\obj\Debug\ConsoleClient.exe
+C:\ProjectUTAP\server_tcp\ConsoleClient\obj\Debug\ConsoleClient.pdb
+C:\ProjectUTAP\server_tcp\ConsoleClient\obj\Debug\ConsoleClient.csprojResolveAssemblyReference.cache

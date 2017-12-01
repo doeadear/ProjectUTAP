@@ -1,0 +1,5 @@
+C:\ProjectUTAP\server_tcp\CommunicationBase\bin\Debug\CommunicationBase.dll
+C:\ProjectUTAP\server_tcp\CommunicationBase\bin\Debug\CommunicationBase.pdb
+C:\ProjectUTAP\server_tcp\CommunicationBase\obj\Debug\CommunicationBase.csprojResolveAssemblyReference.cache
+C:\ProjectUTAP\server_tcp\CommunicationBase\obj\Debug\CommunicationBase.dll
+C:\ProjectUTAP\server_tcp\CommunicationBase\obj\Debug\CommunicationBase.pdb
