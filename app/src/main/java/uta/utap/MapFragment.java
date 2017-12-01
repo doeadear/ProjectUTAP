@@ -2,11 +2,14 @@ package uta.utap;
 
 import android.app.Fragment;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -19,7 +22,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -59,14 +64,15 @@ public class MapFragment extends Fragment
                     Polygon lotPoly =
                             googleMap.addPolygon(new PolygonOptions()
                             .addAll(lots.get(i).getPolyPoints())
+                            .strokeWidth(5)
                             .strokeColor(Color.GREEN)
                             .fillColor(Color.GREEN));
 
                     LotController.getInstance().addLotPoly(lots.get(i), lotPoly);
                 }
+
             }
         });
-
 
         return rootView;
     }
