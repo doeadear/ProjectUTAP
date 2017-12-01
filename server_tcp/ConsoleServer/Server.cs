@@ -98,6 +98,14 @@ namespace ConsoleServer
                             result = string.Format("false;User Account:{0} Exists!", msg[1]);
                         }
                         break;
+
+                    case "LogIn":
+                        if (UserList.Count(x => x.Account == msg[1] && x.Password == msg[2]) == 0)
+                            result = "false";
+                        else
+                            result = "true";
+                        break;
+
                     default:
                         result = "Unknown function: " + msg[0];
                         break;
