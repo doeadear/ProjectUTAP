@@ -2,11 +2,14 @@ package uta.utap;
 
 import android.app.Fragment;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -18,6 +21,10 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -49,16 +56,28 @@ public class MapFragment extends Fragment
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(position, 15);
                 googleMap.animateCamera(cameraUpdate);
 
-                Polygon[] lotPolys =
-                        {
-                                googleMap.addPolygon(new PolygonOptions()
-                                        .add(new LatLng(32.724229, -97.129930), new LatLng(32.723561, -97.129938), new LatLng(32.723581, -97.130314), new LatLng(32.724226, -97.130306))
-                                        .strokeColor(Color.GREEN)
-                                        .fillColor(Color.GREEN))
-                        };
+                ArrayList<Lot> lots = LotController.getInstance().getLots();
+                Lot lot;
+
+                for(int i = 0; i < lots.size(); i++)
+                {
+                    lot = lots.get(i);
+                    int color = AccountController.getInstance().getUser().getUserSettings()
+                                  .getColorSettings().getColor(lot.getStatus());
+
+                    // TODO set fill color based on lot status
+                    Polygon lotPoly =
+                            googleMap.addPolygon(new PolygonOptions()
+                            .addAll(lots.get(i).getPolyPoints())
+                            .strokeWidth(5)
+                            .strokeColor(color)
+                            .fillColor(color));
+
+                    LotController.getInstance().addLotPoly(lots.get(i), lotPoly);
+                }
+
             }
         });
-
 
         return rootView;
     }
