@@ -25,7 +25,7 @@
     {
         public string Account { get; set; }
         public string Lot { get; set; }
-        public double MaxLotDistance { get; set; }
-        public decimal MaxWaitTime { get; set; }
+        public string Distance { get; set; }
+        public string Time { get; set; }
     }
 }

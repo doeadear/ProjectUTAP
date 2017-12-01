@@ -35,6 +35,7 @@ namespace ConsoleClient
 
                     //cb.SendMsg("Register;username;password", tcpClient);
                     //cb.SendMsg("LogIn;username;password1", tcpClient);
+                    //cb.SendMsg("AddSchedule;username;lot;max_lot_distance;max_wait_time", tcpClient);
                     cb.SendMsg("GetSchedule;username", tcpClient);
 
                     Console.WriteLine(cb.ReceiveMsg(tcpClient));

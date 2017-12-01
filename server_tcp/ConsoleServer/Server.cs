@@ -106,6 +106,25 @@ namespace ConsoleServer
                             result = "true";
                         break;
 
+                    case "AddSchedule":
+                        if (msg.Length == 5)
+                        {
+                            ScheduleList.Add(new Schedule()
+                            {
+                                Account = msg[1],
+                                Lot = msg[2],
+                                Distance = msg[3],
+                                Time = msg[4]
+                            });
+
+                            result = "true";
+                        }
+                        else
+                        {
+                            result = "Incorrect format!";
+                        }
+                        break;
+
                     case "GetSchedule":
                         Schedule[] schedules = ScheduleList.Where(x => x.Account == msg[1]).ToArray();
 
@@ -113,7 +132,7 @@ namespace ConsoleServer
 
                         foreach (Schedule s in schedules)
                         {
-                            result += string.Format("{0};{1};{2}@", s.Lot, s.MaxLotDistance, s.MaxWaitTime);
+                            result += string.Format("{0};{1};{2}@", s.Lot, s.Distance, s.Time);
                         }
                         break;
 
