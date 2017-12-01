@@ -56,17 +56,22 @@ public class ColorSettingsActivity extends AppCompatActivity
                 switch (i){
                     case 0:
 //                      Insert method here
-
+                        AccountController.getInstance().getUser().getUserSettings().getColorSettings()
+                                .setUnavailableColor(Color.RED);
                         String message="Color Red selected for full lot";
                         Toast.makeText(ColorSettingsActivity.this,message, Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
 //                      Insert method here
+                        AccountController.getInstance().getUser().getUserSettings().getColorSettings()
+                                .setUnavailableColor(Color.YELLOW);
                         String message2="Color Yellow selected for full lot";
                         Toast.makeText(ColorSettingsActivity.this,message2, Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
 //                      Insert method here
+                        AccountController.getInstance().getUser().getUserSettings().getColorSettings()
+                                .setUnavailableColor(Color.GREEN);
                         String message3="Color Green selected for full lot";
                         Toast.makeText(ColorSettingsActivity.this,message3, Toast.LENGTH_SHORT).show();
                         break;
@@ -87,16 +92,22 @@ public class ColorSettingsActivity extends AppCompatActivity
                 switch (i){
                     case 0:
 //                      Insert method here
+                        AccountController.getInstance().getUser().getUserSettings().getColorSettings()
+                                .setBusyColor(Color.RED);
                         String message="Color Red selected for Busy lot";
                         Toast.makeText(ColorSettingsActivity.this,message, Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
 //                      Insert method here
+                        AccountController.getInstance().getUser().getUserSettings().getColorSettings()
+                                .setBusyColor(Color.YELLOW);
                         String message2="Color Yellow selected for Busy lot";
                         Toast.makeText(ColorSettingsActivity.this,message2, Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
 //                      Insert method here
+                        AccountController.getInstance().getUser().getUserSettings().getColorSettings()
+                                .setBusyColor(Color.GREEN);
                         String message3="Color Green selected for Busy lot";
                         Toast.makeText(ColorSettingsActivity.this,message3, Toast.LENGTH_SHORT).show();
                         break;
@@ -117,16 +128,22 @@ public class ColorSettingsActivity extends AppCompatActivity
                 switch (i){
                     case 0:
 //                      Insert method here
+                        AccountController.getInstance().getUser().getUserSettings().getColorSettings()
+                                .setAvailableColor(Color.RED);
                         String message="Color Red selected for empty lot";
                         Toast.makeText(ColorSettingsActivity.this,message, Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
 //                      Insert method here
+                        AccountController.getInstance().getUser().getUserSettings().getColorSettings()
+                                .setAvailableColor(Color.YELLOW);
                         String message2="Color Yellow selected for empty lot";
                         Toast.makeText(ColorSettingsActivity.this,message2, Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
 //                      Insert method here
+                        AccountController.getInstance().getUser().getUserSettings().getColorSettings()
+                                .setAvailableColor(Color.GREEN);
                         String message3="Color Green selected for empty lot";
                         Toast.makeText(ColorSettingsActivity.this,message3, Toast.LENGTH_SHORT).show();
                         break;

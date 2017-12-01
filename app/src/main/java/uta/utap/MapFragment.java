@@ -57,16 +57,21 @@ public class MapFragment extends Fragment
                 googleMap.animateCamera(cameraUpdate);
 
                 ArrayList<Lot> lots = LotController.getInstance().getLots();
+                Lot lot;
 
                 for(int i = 0; i < lots.size(); i++)
                 {
+                    lot = lots.get(i);
+                    int color = AccountController.getInstance().getUser().getUserSettings()
+                                  .getColorSettings().getColor(lot.getStatus());
+
                     // TODO set fill color based on lot status
                     Polygon lotPoly =
                             googleMap.addPolygon(new PolygonOptions()
                             .addAll(lots.get(i).getPolyPoints())
                             .strokeWidth(5)
-                            .strokeColor(Color.GREEN)
-                            .fillColor(Color.GREEN));
+                            .strokeColor(color)
+                            .fillColor(color));
 
                     LotController.getInstance().addLotPoly(lots.get(i), lotPoly);
                 }

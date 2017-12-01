@@ -69,4 +69,27 @@ public class ColorSettings extends AppCompatActivity
         return m_AvailableColor;
     }
 
+    public int getColor(Lot.Status status)
+    {
+        int color = 0;
+
+        switch(status)
+        {
+            case UNAVAILABLE:
+                color = m_UnavailableColor;
+                break;
+            case BUSY:
+                color = m_BusyColor;
+                break;
+            case AVAILABLE:
+                color = m_AvailableColor;
+                break;
+            default:
+                color = Color.GREEN;
+                break;
+        }
+
+        return color;
+    }
+
 }
