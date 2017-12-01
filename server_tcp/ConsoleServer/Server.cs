@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net.Sockets;
+using System.Linq;
 using System.Net;
 using System;
 using SocketDemo;
@@ -75,10 +76,34 @@ namespace ConsoleServer
             try
             {
                 CommunicationBase cb = new CommunicationBase();
-                string msg = cb.ReceiveMsg(mTcpClient);
-                Console.WriteLine(msg + "\n");
 
-                cb.SendMsg("true", mTcpClient);
+                string[] msg = cb.ReceiveMsg(mTcpClient).Split(';');
+                string result = "Error";
+
+                switch (msg[0])
+                {
+                    case "Register":
+                        if (UserList.Count(x => x.Account == msg[1]) == 0)
+                        {
+                            UserList.Add(new User()
+                            {
+                                Account = msg[1],
+                                Password = msg[2]
+                            });
+
+                            result = "true";
+                        }
+                        else
+                        {
+                            result = string.Format("false;User Account:{0} Exists!", msg[1]);
+                        }
+                        break;
+                    default:
+                        result = "Unknown function: " + msg[0];
+                        break;
+                }
+
+                cb.SendMsg(result, mTcpClient);
             }
             catch
             {

@@ -32,7 +32,7 @@ namespace ConsoleClient
                 {
                     Console.WriteLine("Connected!");
                     CommunicationBase cb = new CommunicationBase();
-                    cb.SendMsg("Test Message", tcpClient);
+                    cb.SendMsg("Register;username;password", tcpClient);
                     Console.WriteLine(cb.ReceiveMsg(tcpClient));
                 }
                 else
