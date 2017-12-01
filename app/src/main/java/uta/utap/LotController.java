@@ -18,6 +18,7 @@ public class LotController
     private static final LotController lotController = new LotController();
     private static HashMap<Lot, Polygon> m_StatusColors = new HashMap<>();
     private ArrayList<Lot> m_Lots;
+    private ArrayList<Lot> m_RecommendedLots;
 
     private LotController()
     {
@@ -33,6 +34,11 @@ public class LotController
     public ArrayList<Lot> getLots()
     {
         return m_Lots;
+    }
+
+    public ArrayList<Lot> getRecommendedLots(Location loc)
+    {
+        return m_RecommendedLots;
     }
 
     public Polygon getLotPoly(Lot lot)
