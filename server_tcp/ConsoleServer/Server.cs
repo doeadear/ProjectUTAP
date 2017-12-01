@@ -1,7 +1,8 @@
-﻿using System.Net.Sockets;
-using System.Threading;
+﻿using System.Collections.Generic;
+using System.Net.Sockets;
 using System.Net;
 using System;
+using SocketDemo;
 
 namespace ConsoleServer
 {
@@ -10,6 +11,17 @@ namespace ConsoleServer
     /// </summary>
     public class Server
     {
+        List<User> UserList;
+        List<Lot> LotList;
+        List<Schedule> ScheduleList;
+
+        public Server()
+        {
+            UserList = new List<User>();
+            LotList = new List<Lot>();
+            ScheduleList = new List<Schedule>();
+        }
+
         /// <summary>
         /// ListenToConnection
         /// </summary>
@@ -34,8 +46,6 @@ namespace ConsoleServer
 
             TcpClient tmpTcpClient;
 
-            int numberOfClients = 0;
-
             while (true)
             {
                 try
@@ -45,13 +55,8 @@ namespace ConsoleServer
                     if (tmpTcpClient.Connected)
                     {
                         Console.WriteLine("Connected!");
-                        HandleClient handleClient = new HandleClient(tmpTcpClient);
-                        Thread myThread = new Thread(new ThreadStart(handleClient.Communicate));
 
-                        numberOfClients += 1;
-                        myThread.IsBackground = true;
-                        myThread.Start();
-                        myThread.Name = tmpTcpClient.Client.RemoteEndPoint.ToString();
+                        Communicate(tmpTcpClient);
                     }
                 }
                 catch (Exception ex)
@@ -61,5 +66,26 @@ namespace ConsoleServer
                 }
             } // end while
         } // end ListenToConnect()
+
+        /// <summary>
+        /// Communicate
+        /// </summary>
+        private void Communicate(TcpClient mTcpClient)
+        {
+            try
+            {
+                CommunicationBase cb = new CommunicationBase();
+                string msg = cb.ReceiveMsg(mTcpClient);
+                Console.WriteLine(msg + "\n");
+
+                cb.SendMsg("true", mTcpClient);
+            }
+            catch
+            {
+                Console.WriteLine("Client disconnected!");
+                mTcpClient.Close();
+                Console.Read();
+            }
+        } // end HandleClient()
     } // end class
 } // end namespace

@@ -4,14 +4,14 @@ using System.Text;
 namespace SocketDemo
 {
     /// <summary>
-    /// CommunicationBase給客戶端和主機端共用，可傳送接收訊息
+    /// CommunicationBase
     /// </summary>
     public class CommunicationBase
     {
         /// <summary>
-        /// 傳送訊息
+        /// Send Message
         /// </summary>
-        /// <param name="msg">要傳送的訊息</param>
+        /// <param name="msg">Message</param>
         /// <param name="tmpTcpClient">TcpClient</param>
         public void SendMsg(string msg, TcpClient tmpTcpClient)
         {
@@ -24,10 +24,10 @@ namespace SocketDemo
         }
 
         /// <summary>
-        /// 接收訊息
+        /// Receive Message
         /// </summary>
         /// <param name="tmpTcpClient">TcpClient</param>
-        /// <returns>接收到的訊息</returns>
+        /// <returns>Message Received</returns>
         public string ReceiveMsg(TcpClient tmpTcpClient)
         {
             string receiveMsg = string.Empty;
