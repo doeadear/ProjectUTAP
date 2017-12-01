@@ -106,6 +106,17 @@ namespace ConsoleServer
                             result = "true";
                         break;
 
+                    case "GetSchedule":
+                        Schedule[] schedules = ScheduleList.Where(x => x.Account == msg[1]).ToArray();
+
+                        result = "";
+
+                        foreach (Schedule s in schedules)
+                        {
+                            result += string.Format("{0};{1};{2}@", s.Lot, s.MaxLotDistance, s.MaxWaitTime);
+                        }
+                        break;
+
                     default:
                         result = "Unknown function: " + msg[0];
                         break;
@@ -119,6 +130,6 @@ namespace ConsoleServer
                 mTcpClient.Close();
                 Console.Read();
             }
-        } // end HandleClient()
+        } // end Communicate()
     } // end class
 } // end namespace

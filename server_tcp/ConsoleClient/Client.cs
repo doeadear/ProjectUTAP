@@ -34,7 +34,8 @@ namespace ConsoleClient
                     CommunicationBase cb = new CommunicationBase();
 
                     //cb.SendMsg("Register;username;password", tcpClient);
-                    cb.SendMsg("LogIn;username;password1", tcpClient);
+                    //cb.SendMsg("LogIn;username;password1", tcpClient);
+                    cb.SendMsg("GetSchedule;username", tcpClient);
 
                     Console.WriteLine(cb.ReceiveMsg(tcpClient));
                 }

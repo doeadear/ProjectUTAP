@@ -23,9 +23,9 @@
 
     public class Schedule
     {
-        public string uid { get; set; }
-        public string lot_id { get; set; }
-        public double m_MaxLotDistance { get; set; }
-        public decimal m_MaxWaitTime { get; set; }
+        public string Account { get; set; }
+        public string Lot { get; set; }
+        public double MaxLotDistance { get; set; }
+        public decimal MaxWaitTime { get; set; }
     }
 }
