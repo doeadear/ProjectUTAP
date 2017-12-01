@@ -106,6 +106,20 @@ namespace ConsoleServer
                             result = "true";
                         break;
 
+                    case "GetColors":
+                        User user = UserList.FirstOrDefault(x => x.Account == msg[1]);
+
+                        if (user != null)
+                        {
+                            result = string.Format("{0};{1};{2}", user.ColorFull, user.ColorBusy, user.ColorFree);
+                        }
+                        else
+                        {
+                            result = "User Not Exist!";
+                        }
+
+                        break;
+
                     case "AddSchedule":
                         if (msg.Length == 5)
                         {

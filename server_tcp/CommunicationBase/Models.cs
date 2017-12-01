@@ -4,13 +4,9 @@
     {
         public string Account { get; set; }
         public string Password { get; set; }
-
-
-        public string email { get; set; }
-
-        public int m_AvailableColor { get; set; }
-        public int m_BusyColor { get; set; }
-        public int m_UnavailableColor { get; set; }
+        public string ColorFull { get; set; }
+        public string ColorBusy { get; set; }
+        public string ColorFree { get; set; }
     }
 
     public class Lot
