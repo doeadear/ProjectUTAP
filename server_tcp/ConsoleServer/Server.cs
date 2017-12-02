@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net.Sockets;
+using System.Linq;
 using System.Net;
 using System;
 using SocketDemo;
@@ -75,10 +76,109 @@ namespace ConsoleServer
             try
             {
                 CommunicationBase cb = new CommunicationBase();
-                string msg = cb.ReceiveMsg(mTcpClient);
-                Console.WriteLine(msg + "\n");
 
-                cb.SendMsg("true", mTcpClient);
+                string[] msg = cb.ReceiveMsg(mTcpClient).Split(';');
+                string result = "Error";
+
+                switch (msg[0])
+                {
+                    case "Register":
+                        if (UserList.Count(x => x.Account == msg[1]) == 0)
+                        {
+                            UserList.Add(new User()
+                            {
+                                Account = msg[1],
+                                Password = msg[2]
+                            });
+
+                            result = "true";
+                        }
+                        else
+                        {
+                            result = string.Format("false;User Account:{0} Exists!", msg[1]);
+                        }
+                        break;
+
+                    case "LogIn":
+                        if (UserList.Count(x => x.Account == msg[1] && x.Password == msg[2]) == 0)
+                            result = "false";
+                        else
+                            result = "true";
+                        break;
+
+                    case "UpdateColors":
+                        User colors = UserList.FirstOrDefault(x => x.Account == msg[1]);
+
+                        if (colors != null)
+                        {
+                            if (msg.Length == 5)
+                            {
+                                colors.ColorFull = msg[2];
+                                colors.ColorBusy = msg[3];
+                                colors.ColorFree = msg[4];
+
+                                result = "true";
+                            }
+                            else
+                            {
+                                result = "Incorrect format!";
+                            }
+                        }
+                        else
+                        {
+                            result = "User Not Exist!";
+                        }
+                        break;
+
+                    case "GetColors":
+                        User user = UserList.FirstOrDefault(x => x.Account == msg[1]);
+
+                        if (user != null)
+                        {
+                            result = string.Format("{0};{1};{2}", user.ColorFull, user.ColorBusy, user.ColorFree);
+                        }
+                        else
+                        {
+                            result = "User Not Exist!";
+                        }
+                        break;
+
+                    case "AddSchedule":
+                        if (msg.Length == 5)
+                        {
+                            ScheduleList.Add(new Schedule()
+                            {
+                                Account = msg[1],
+                                Lot = msg[2],
+                                Distance = msg[3],
+                                Time = msg[4]
+                            });
+
+                            result = "true";
+                        }
+                        else
+                        {
+                            result = "Incorrect format!";
+                        }
+                        break;
+
+                    case "GetSchedule":
+                        Schedule[] schedules = ScheduleList.Where(x => x.Account == msg[1]).ToArray();
+
+                        result = "";
+
+                        foreach (Schedule s in schedules)
+                        {
+                            result += string.Format("{0};{1};{2}@", s.Lot, s.Distance, s.Time);
+                        }
+                        break;
+
+                    default:
+                        result = "Unknown function: " + msg[0];
+                        break;
+                }
+
+                cb.SendMsg(result, mTcpClient);
             }
             catch
             {
@@ -86,6 +186,6 @@ namespace ConsoleServer
                 mTcpClient.Close();
                 Console.Read();
             }
-        } // end HandleClient()
+        } // end Communicate()
     } // end class
 } // end namespace

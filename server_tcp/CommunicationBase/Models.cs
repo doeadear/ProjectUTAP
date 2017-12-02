@@ -2,12 +2,11 @@
 {
     public class User
     {
-        public string uid { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public int m_AvailableColor { get; set; }
-        public int m_BusyColor { get; set; }
-        public int m_UnavailableColor { get; set; }
+        public string Account { get; set; }
+        public string Password { get; set; }
+        public string ColorFull { get; set; }
+        public string ColorBusy { get; set; }
+        public string ColorFree { get; set; }
     }
 
     public class Lot
@@ -20,9 +19,9 @@
 
     public class Schedule
     {
-        public string uid { get; set; }
-        public string lot_id { get; set; }
-        public double m_MaxLotDistance { get; set; }
-        public decimal m_MaxWaitTime { get; set; }
+        public string Account { get; set; }
+        public string Lot { get; set; }
+        public string Distance { get; set; }
+        public string Time { get; set; }
     }
 }
