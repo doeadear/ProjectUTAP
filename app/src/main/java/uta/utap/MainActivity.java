@@ -17,6 +17,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -47,11 +48,16 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     static int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
+    private static boolean displayList = false;
     FragmentManager fragmentManager = getFragmentManager();
+    ArrayList<Marker> markerList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        markerList.clear();
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -109,6 +115,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
+        boolean close = true;
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -122,9 +130,63 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, Settings.class);
             startActivity(intent);
         }
+        else if(id == R.id.nav_recommended)
+        {
+            displayList = !displayList;
+            close = false;
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            ArrayList<Lot> lots = LotController.getInstance()
+                                  .getRecommendedLots(AccountController.getInstance().
+                                                      getUser().getDestination());
+
+            Geocoder geo = new Geocoder(getApplicationContext());
+
+            navigationView.getMenu().removeGroup(R.id.recommended_lots);
+            navigationView.getMenu().getItem(2).setChecked(false);
+
+            if(displayList)
+            {
+                Lot lot;
+                for (int i = 0; i < lots.size(); i++) {
+                    lot = lots.get(i);
+                    try {
+                        navigationView.getMenu().add(R.id.recommended_lots, i, Menu.NONE, (i + 1) + ". " + geo.getFromLocation(lot.getLocation().getLatitude(),
+                                lot.getLocation().getLongitude(), 1).get(0)
+                                .getFeatureName());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        else
+        {
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            Geocoder geo = new Geocoder(getApplicationContext());
+            ArrayList<Lot> lots = LotController.getInstance()
+                    .getRecommendedLots(AccountController.getInstance().
+                            getUser().getDestination());
+            for(int i = 0; i < navigationView.getMenu().size(); i++)
+            {
+                if(id == i)
+                {
+                    LatLng latLng = new LatLng(lots.get(i).getLocation().getLatitude(),
+                                               lots.get(i).getLocation().getLongitude());
+                    try {
+                        centerMap(latLng, geo.getFromLocation(latLng.latitude, latLng.longitude, 1).get(0).getFeatureName());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        if(close)
+        {
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+        }
         return true;
     }
 
@@ -139,23 +201,6 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-//  public void onMapSearch(View view) {
-//  }
-
-//  public void onEnterDestination(View view)
-//  {
-//      try {
-//          Intent intent =
-//                  new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY)
-//                          .build(this);
-//          startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
-//      } catch (GooglePlayServicesRepairableException e) {
-//          // TODO: Handle the error.
-//      } catch (GooglePlayServicesNotAvailableException e) {
-//          // TODO: Handle the error.
-//      }
-//  }
-
     private void centerMap(final Place place)
     {
         MapView mapView = (MapView) findViewById(R.id.mapView);
@@ -164,13 +209,38 @@ public class MainActivity extends AppCompatActivity
             public void onMapReady(GoogleMap googleMap) {
                 Log.i("DEBUG", "onMapReady");
 
-                googleMap.clear();
-                googleMap.addMarker(new MarkerOptions().position(place.getLatLng())
-                                                       .title(place.getName().toString()));
+                // Clear prev markers
+                for(int i = 0; i < markerList.size(); i++)
+                {
+                    markerList.get(i).remove();
+                }
+
+                markerList.add(googleMap.addMarker(new MarkerOptions().position(place.getLatLng())
+                                                       .title(place.getName().toString())));
                 googleMap.animateCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
             }
         });
+    }
 
+    private void centerMap(final LatLng latLng, final String name)
+    {
+        MapView mapView = (MapView) findViewById(R.id.mapView);
+        mapView.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                Log.i("DEBUG", "onMapReady");
+
+                // Clear prev markers
+                for(int i = 0; i < markerList.size(); i++)
+                {
+                    markerList.get(i).remove();
+                }
+
+                markerList.add(googleMap.addMarker(new MarkerOptions().position(latLng)
+                        .title(name)));
+                googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+            }
+        });
     }
 
 }

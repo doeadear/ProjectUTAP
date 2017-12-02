@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,6 +37,7 @@ public class MapFragment extends Fragment
     MapView mapView;
     LatLng position = new LatLng(32.736442, -97.117285);
     String markerText = "UTA";
+    Marker utaMarker;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class MapFragment extends Fragment
                 Log.i("DEBUG", "onMapReady");
 
                 //add marker
-                Marker marker  = googleMap.addMarker(new MarkerOptions().position(position).title(markerText));
+                utaMarker  = googleMap.addMarker(new MarkerOptions().position(position).title(markerText));
 
                 //zoom to position with level 16
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(position, 15);
@@ -76,6 +78,10 @@ public class MapFragment extends Fragment
                     LotController.getInstance().addLotPoly(lots.get(i), lotPoly);
                 }
 
+                Location loc = new Location("");
+                loc.setLatitude(position.latitude);
+                loc.setLongitude(position.longitude);
+                AccountController.getInstance().getUser().setDestination(loc);
             }
         });
 
@@ -86,6 +92,10 @@ public class MapFragment extends Fragment
     public void onResume() {
         mapView.onResume();
         super.onResume();
+
+        if(utaMarker != null) {
+            utaMarker.remove();
+        }
     }
 
     @Override

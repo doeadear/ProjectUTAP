@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group android:id="@+id/nav_selections"
+           android:checkableBehavior="single">
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_account_circle_black_24dp"
@@ -12,5 +13,13 @@
             android:title="@string/title_activity_settings" />
 
     </group>
-
+    <group android:id="@+id/recommended_label"
+           android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_recommended"
+            android:title="Recommended Lots"/>
+    </group>
+    <group android:id="@+id/recommended_lots"
+           android:checkableBehavior="single">
+    </group>
 </menu>

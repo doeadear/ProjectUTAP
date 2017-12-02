@@ -23,6 +23,7 @@ public class LotController
     private LotController()
     {
         m_Lots = new ArrayList<>();
+        m_RecommendedLots = new ArrayList<>();
         createLots();
     }
 
@@ -38,6 +39,14 @@ public class LotController
 
     public ArrayList<Lot> getRecommendedLots(Location loc)
     {
+        m_RecommendedLots.clear();
+        for(int i = 0; i < m_Lots.size(); i++)
+        {
+            if(loc.distanceTo(m_Lots.get(i).getLocation()) < 500)
+            {
+                m_RecommendedLots.add(m_Lots.get(i));
+            }
+        }
         return m_RecommendedLots;
     }
 
