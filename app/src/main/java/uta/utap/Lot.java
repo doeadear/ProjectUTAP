@@ -18,6 +18,7 @@ public class Lot
     private boolean m_FacultyOnly; // Faculty only lot
     private Status m_Status;  // Lot status
     private Vector<LatLng> m_PolyPoints;
+    private String m_Name;
 
     // Constructor
     public Lot(Location location, Vector<LatLng> points, boolean facultyOnly, Status status)
@@ -26,6 +27,7 @@ public class Lot
         m_FacultyOnly = facultyOnly;
         m_Status = status;
         m_PolyPoints = points;
+        m_Name = "default";
     }
 
     // Accessor methods
@@ -47,6 +49,16 @@ public class Lot
     public Vector<LatLng> getPolyPoints()
     {
         return m_PolyPoints;
+    }
+
+    public String getName()
+    {
+        return m_Name;
+    }
+
+    public void setName(String name)
+    {
+        m_Name = name;
     }
 
     public void setStatus(Status status)

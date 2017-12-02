@@ -37,11 +37,14 @@ public class MapFragment extends Fragment
     MapView mapView;
     LatLng position = new LatLng(32.736442, -97.117285);
     String markerText = "UTA";
-    Marker utaMarker;
+    public static Marker utaMarker;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.map, container, false);
+        if(utaMarker != null) {
+            utaMarker.remove();
+        }
 
         //initialize map
         mapView = (MapView) rootView.findViewById(R.id.mapView);
@@ -92,6 +95,16 @@ public class MapFragment extends Fragment
     public void onResume() {
         mapView.onResume();
         super.onResume();
+
+        if(utaMarker != null) {
+            utaMarker.remove();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        mapView.onPause();
+        super.onPause();
 
         if(utaMarker != null) {
             utaMarker.remove();

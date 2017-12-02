@@ -110,6 +110,7 @@
             android:layout_marginStart="150dp"
             android:layout_marginTop="30dp"
             android:background="@color/utaOrange"
+            android:onClick="saveSettings"
             android:text="@string/save" />
 
 

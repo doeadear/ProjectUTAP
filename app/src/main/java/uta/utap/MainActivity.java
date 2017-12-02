@@ -150,13 +150,10 @@ public class MainActivity extends AppCompatActivity
                 Lot lot;
                 for (int i = 0; i < lots.size(); i++) {
                     lot = lots.get(i);
-                    try {
-                        navigationView.getMenu().add(R.id.recommended_lots, i, Menu.NONE, (i + 1) + ". " + geo.getFromLocation(lot.getLocation().getLatitude(),
-                                lot.getLocation().getLongitude(), 1).get(0)
-                                .getFeatureName());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+//                      navigationView.getMenu().add(R.id.recommended_lots, i, Menu.NONE, (i + 1) + ". " + geo.getFromLocation(lot.getLocation().getLatitude(),
+//                              lot.getLocation().getLongitude(), 1).get(0)
+//                              .getFeatureName());
+                        navigationView.getMenu().add(R.id.recommended_lots, i, Menu.NONE, (i + 1) + ". " + lot.getName());
                 }
             }
         }
@@ -204,10 +201,16 @@ public class MainActivity extends AppCompatActivity
     private void centerMap(final Place place)
     {
         MapView mapView = (MapView) findViewById(R.id.mapView);
+
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 Log.i("DEBUG", "onMapReady");
+
+                if(MapFragment.utaMarker != null)
+                {
+                    MapFragment.utaMarker.remove();
+                }
 
                 // Clear prev markers
                 for(int i = 0; i < markerList.size(); i++)
@@ -225,10 +228,16 @@ public class MainActivity extends AppCompatActivity
     private void centerMap(final LatLng latLng, final String name)
     {
         MapView mapView = (MapView) findViewById(R.id.mapView);
+
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 Log.i("DEBUG", "onMapReady");
+
+                if(MapFragment.utaMarker != null)
+                {
+                    MapFragment.utaMarker.remove();
+                }
 
                 // Clear prev markers
                 for(int i = 0; i < markerList.size(); i++)

@@ -35,15 +35,104 @@ public class LotSettingsActivity extends AppCompatActivity implements AdapterVie
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
-
         spinner.setAdapter(adapter);
         spinner2.setAdapter(adapter);
         spinner3.setAdapter(adapter);
         spinner4.setAdapter(adapter2);
         spinner5.setAdapter(adapter3);
-        spinner.setOnItemSelectedListener(this);
-        spinner2.setOnItemSelectedListener(this);
-        spinner2.setOnItemSelectedListener(this);
+
+        int pos;
+        switch((int)AccountController.getInstance().getUser().getUserSettings().getLotSettings().getMaxLotDistance())
+        {
+            case 50:
+                pos = 0;
+                break;
+            case 100:
+                pos = 1;
+                break;
+            case 200:
+                pos = 2;
+                break;
+            case 500:
+                pos = 3;
+                break;
+            case 1000:
+                pos = 4;
+                break;
+            default:
+                pos = 0;
+                break;
+
+        }
+        spinner4.setSelection(pos);
+
+        spinner4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch(i)
+                {
+                    case 0:
+                        AccountController.getInstance().getUser().getUserSettings().getLotSettings().setMaxLotDistance(50.0f);
+                        break;
+                    case 1:
+                        AccountController.getInstance().getUser().getUserSettings().getLotSettings().setMaxLotDistance(100.0f);
+                        break;
+                    case 2:
+                        AccountController.getInstance().getUser().getUserSettings().getLotSettings().setMaxLotDistance(200.0f);
+                        break;
+                    case 3:
+                        AccountController.getInstance().getUser().getUserSettings().getLotSettings().setMaxLotDistance(500.0f);
+                        break;
+                    case 4:
+                        AccountController.getInstance().getUser().getUserSettings().getLotSettings().setMaxLotDistance(1000.0f);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch(i)
+                {
+                    case 0:
+
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
     }
 
@@ -64,6 +153,12 @@ public class LotSettingsActivity extends AppCompatActivity implements AdapterVie
         startActivityForResult(myIntent, 0);
         return true;
 
+    }
+
+    public void saveSettings(View view)
+    {
+        Intent intent = new Intent(getApplicationContext(), Settings.class);
+        startActivity(intent);
     }
 
 }

@@ -7,6 +7,7 @@ import com.google.android.gms.maps.model.Polygon;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Vector;
 
 /**
@@ -42,7 +43,7 @@ public class LotController
         m_RecommendedLots.clear();
         for(int i = 0; i < m_Lots.size(); i++)
         {
-            if(loc.distanceTo(m_Lots.get(i).getLocation()) < 500)
+            if(loc.distanceTo(m_Lots.get(i).getLocation()) < AccountController.getInstance().getUser().getUserSettings().getLotSettings().getMaxLotDistance())
             {
                 m_RecommendedLots.add(m_Lots.get(i));
             }
@@ -72,23 +73,10 @@ public class LotController
                         {32.727163, -97.126912},
                         {32.729737, -97.119459},
                         {32.731351, -97.119639},
-                        {32.730115, -97.117255},
+                        {32.734474, -97.113214},
                         {32.733420, -97.116782},
-                        {32.733384, -97.115862},
-                        {32.732822, -97.115446},
-                        {32.734437, -97.113204},
-                        {32.733237, -97.107688},
-                        {32.732648, -97.107868},
-                        {32.731721, -97.107793},
-                        {32.728395, -97.107978},
-                        {32.727400, -97.108053},
-                        {32.724974, -97.108431},
-                        {32.726312, -97.109209},
-                        {32.725667, -97.110555},
-                        {32.726037, -97.112886},
-                        {32.724523, -97.112097},
-                        {32.723546, -97.112033},
-                        {32.723125, -97.110576}
+                        {32.733223, -97.111548},
+                        {32.729441, -97.111623}
                 };
 
         // TODO finish adding lot poly points
@@ -97,7 +85,12 @@ public class LotController
                         {{32.724229, -97.129930}, {32.723561, -97.129938}, {32.723581, -97.130314}, {32.724226, -97.130306}},
                         {{32.727767, -97.127544}, {32.727749, -97.126283}, {32.726291, -97.126350}, {32.726314, -97.127555}},
                         {{32.729917, -97.118823}, {32.729670, -97.118819}, {32.729656, -97.120147}, {32.729911, -97.120152}},
-                        {{32.731326, -97.120462}, {32.731322, -97.118968}, {32.731004, -97.118949}, {32.731017, -97.120476}}
+                        {{32.731326, -97.120462}, {32.731322, -97.118968}, {32.731004, -97.118949}, {32.731017, -97.120476}},
+                        {{32.734993, -97.113477}, {32.734993, -97.112935}, {32.733878, -97.112956}, {32.733887, -97.113466}},
+                        {{32.734012, -97.117674}, {32.734012, -97.116606}, {32.732699, -97.116585}, {32.732722, -97.117669}},
+                        {{32.733566, -97.111918}, {32.733575, -97.111188}, {32.732686, -97.111183}, {32.732695, -97.111929}},
+                        {{32.729579, -97.112055}, {32.729579, -97.111165}, {32.729245, -97.111173}, {32.729245, -97.112069}}
+
                 };
 
         Vector<LatLng> points = new Vector<>();
@@ -116,6 +109,46 @@ public class LotController
             location.setLongitude(studentLotLoc[i][1]);
 
             m_Lots.add(new Lot(location, points, false, defaultStatus));
+        }
+
+        fakeStatus();
+    }
+
+    private void fakeStatus()
+    {
+        String[] lotNames =
+                {
+                        "Lot 25",
+                        "Lot 26",
+                        "Trinity West Parking",
+                        "Lot 30",
+                        "Lot 36",
+                        "West Campus Parking Garage",
+                        "Lot F12",
+                        "Maverick Parking Garage"
+                };
+
+        for(int i = 0; i < m_Lots.size(); i++)
+        {
+            Random rand = new Random();
+
+            switch(rand.nextInt(3))
+            {
+                case 0:
+                    m_Lots.get(i).setStatus(Lot.Status.AVAILABLE);
+                break;
+                case 1:
+                    m_Lots.get(i).setStatus(Lot.Status.BUSY);
+                    break;
+                case 2:
+                    m_Lots.get(i).setStatus(Lot.Status.UNAVAILABLE);
+                    break;
+                default:
+                    break;
+            }
+
+            m_Lots.get(i).setName(lotNames[i]);
+
         }
     }
 
